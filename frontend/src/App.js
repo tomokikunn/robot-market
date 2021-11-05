@@ -29,7 +29,7 @@ const App = () => {
           products.length !== undefined &&
           products.length > 0 ? (
             products?.map((item) => (
-              <div className="col-12 col-md-4 product-column">
+              <div className="col-12 col-md-6 col-lg-4 product-column">
                 <ProductItem productData={item} />
               </div>
             ))

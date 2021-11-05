@@ -11,7 +11,6 @@ const ProductItem = (props) => {
           <div className="col-6 created-date-info">
             <p className="name-text">{productData?.name}</p>
             <p className="price-text">{productData?.price}</p>
-
             <p className="material-info-text">{productData?.material}</p>
             <p className="created-date-text">{productData?.createdAt}</p>
           </div>
