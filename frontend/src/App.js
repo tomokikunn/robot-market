@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import styles from "./styles/home.module.scss";
+import "./styles/pages/home.scss";
 import { Button } from "react-bootstrap";
 import CartModal from "./components/CartModal";
-function App() {
+import RobotNavbar from "./components/RobotNavbar";
+const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   return (
     <div className="App">
-      <div className={`${styles.mainContent} container-fluid `}>
-        <h1 className={styles.pageTitle}>Robot Market</h1>
-        <p className={styles.pageDescription}>
-          Get yourself a new assistant today!
-        </p>
-        <Button variant="primary" onClick={() => setShowCartModal(true)}>
-          show cart
-        </Button>
+      <RobotNavbar onCartClicked={() => setShowCartModal(true)} />
+      <div className="main-content container-fluid">
         <CartModal
           show={showCartModal}
           handleClose={() => setShowCartModal(false)}
@@ -21,6 +16,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

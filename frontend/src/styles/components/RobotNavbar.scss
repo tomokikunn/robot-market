@@ -1,0 +1,17 @@
+.main-navbar {
+  background-color: #f3e8ee;
+  font-family: "Poppins";
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 3px 6px rgba(243, 232, 238, 0.3);
+  .brand-text {
+    color: #084c61;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .brand-desc {
+    color: #084c61;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

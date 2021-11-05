@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap";
-import "../styles/CartModal.scss";
+import "../styles/components/CartModal.scss";
 const CartModal = (props) => {
   const { show, handleClose, cartItems } = props;
   return (
