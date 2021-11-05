@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import "../styles/components/RobotNavbar.scss";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const RobotNavbar = (props) => {
   const { onCartClicked } = props;
   return (
@@ -10,15 +11,11 @@ const RobotNavbar = (props) => {
           <span className="brand-text">Robot Market</span>
           <p className="brand-desc">Get Yourself a new robot today</p>
         </Navbar.Brand>
-        <Button variant="primary" onClick={onCartClicked}>
-          <i className="fas fa-shopping-cart"></i>
+        <Button className="cart-btn" onClick={onCartClicked}>
+          <FontAwesomeIcon icon={faShoppingCart} />
+          <div className="item-count">2</div>
         </Button>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        {/* <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="me-auto">
-        
-      </Nav>
-    </Navbar.Collapse> */}
       </Container>
     </Navbar>
   );

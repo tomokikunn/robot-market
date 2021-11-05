@@ -1,17 +1,37 @@
 .main-navbar {
-  background-color: #f3e8ee;
+  background-color: #4a4e62;
   font-family: "Poppins";
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  box-shadow: 0 3px 6px rgba(243, 232, 238, 0.3);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
   .brand-text {
-    color: #084c61;
+    color: #fffbfe;
     font-size: 32px;
     font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   .brand-desc {
-    color: #084c61;
+    color: #fffbfe;
     font-size: 16px;
     font-weight: 400;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .cart-btn {
+    background-color: #ff6b6b;
+    border: none;
+    position: relative;
+    .item-count {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      font-size: 12px;
+      font-weight: 700;
+      background-color: red;
+      border-radius: 10px;
+      line-height: 20px;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
   }
 }
