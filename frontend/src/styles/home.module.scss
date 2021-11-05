@@ -1,10 +1,17 @@
 .mainContent {
   margin-top: 50px;
-  .pageTitle {
-    font-weight: 700;
-    font-family: "Inter";
+
+  .mainContentColumn {
+    .pageTitle {
+      font-weight: 700;
+      font-family: "Inter";
+    }
+    .pageDescription {
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
-  .pageDescription {
-    font-size: 18px;
+  .cartColumn {
+    background-color: #ebebeb;
   }
 }

@@ -1,0 +1,30 @@
+.cart-modal.modal.right {
+  .modal-dialog {
+    position: fixed;
+    width: 320px;
+    height: 100%;
+    margin: 0;
+    transform: translate3d(0%, 0, 0);
+  }
+
+  .modal-content {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .modal-body {
+    padding: 15px 15px 80px;
+  }
+
+  &.fade {
+    .modal-dialog {
+      right: -320px;
+      transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
+    &.show {
+      .modal-dialog {
+        right: 0;
+      }
+    }
+  }
+}

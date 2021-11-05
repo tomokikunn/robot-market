@@ -1,6 +1,9 @@
-import * as React from "react";
+import React, { useState } from "react";
 import styles from "./styles/home.module.scss";
+import { Button } from "react-bootstrap";
+import CartModal from "./components/CartModal";
 function App() {
+  const [showCartModal, setShowCartModal] = useState(false);
   return (
     <div className="App">
       <div className={`${styles.mainContent} container-fluid `}>
@@ -8,8 +11,14 @@ function App() {
         <p className={styles.pageDescription}>
           Get yourself a new assistant today!
         </p>
+        <Button variant="primary" onClick={() => setShowCartModal(true)}>
+          show cart
+        </Button>
+        <CartModal
+          show={showCartModal}
+          handleClose={() => setShowCartModal(false)}
+        />
       </div>
-      {/*Add your code here*/}
     </div>
   );
 }
