@@ -7,7 +7,7 @@ import ProductItem from "./components/ProductItem";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [products, setProducts] = useState([]);
-  const [itemsInCart, setItemsInCart] = useState({});
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   const getAllProducts = async () => {
     const response = await axios.get("http://localhost:8000/api/robots");
@@ -15,21 +15,26 @@ const App = () => {
   };
 
   const onAddToCart = (item) => {
-    const currentCart = Object.assign({}, itemsInCart);
-    //check if the entries is more than 5 and currently not in cart
-    if (
-      Object.entries(currentCart)?.length >= 5 &&
-      currentCart[item.name] === undefined
-    ) {
-      window.alert("Exceed 5 items");
+    let newCart = Object.assign([], itemsInCart);
+    const foundInCart = newCart.find((v) => v?.name === item?.name);
+    const currentItemIndex = newCart.indexOf(foundInCart);
+    if (newCart?.length >= 5 && foundInCart === undefined) {
+      //check if the entries is more than 5 and currently not in cart
+      window.alert("The robot is exceed 5 items");
       return;
-    }
-    //check if the item in cart is exceeding stock
-    const currentQuantityInCart = currentCart[item.name] ?? 0;
-    if (currentQuantityInCart >= item?.stock) {
+    } else if (foundInCart?.qty + 1 > item?.stock) {
+      //check if the item in cart is exceeding stock
+      window.alert(
+        `The currently selected robot is exceeding the stock quantity, stock ${item?.stock} : selected in cart ${foundInCart?.qty}`
+      );
       return;
+    } else {
+      if (currentItemIndex === -1) {
+        newCart = [...newCart, { ...item, qty: 1 }];
+      } else {
+        newCart[currentItemIndex].qty += 1;
+      }
     }
-    const newCart = { ...currentCart, [item.name]: currentQuantityInCart + 1 };
     setItemsInCart(newCart);
   };
   useEffect(() => {
