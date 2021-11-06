@@ -1,6 +1,8 @@
 import "../styles/components/ProductItem.scss";
 import { CurrencyConverter } from "../utils/CurrencyConverter";
 import moment from "moment";
+import Button from "react-bootstrap/Button";
+
 const ProductItem = (props) => {
   const { onAddToCart, productData } = props;
   return (
@@ -28,7 +30,13 @@ const ProductItem = (props) => {
           </div>
           <div className="col-12 add-cart-container">
             <div className="col-12 col-lg-4">
-              <div className="add-cart-btn">Add to Cart</div>
+              <Button
+                className="add-cart-btn"
+                disabled={productData?.stock == 0}
+                onClick={() => onAddToCart(productData)}
+              >
+                Add to Cart
+              </Button>
             </div>
             <div className="col-12 col-lg-8">
               <div className="in-stock-qty">

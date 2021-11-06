@@ -5,7 +5,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const RobotNavbar = (props) => {
   const { onCartClicked, cartItemsCount } = props;
   return (
-    <Navbar className="main-navbar" expand="lg">
+    <Navbar className="main-navbar sticky-top" expand="lg">
       <Container>
         <Navbar.Brand>
           <span className="brand-text">Robot Market</span>
