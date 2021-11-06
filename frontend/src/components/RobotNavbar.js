@@ -16,7 +16,6 @@ const RobotNavbar = (props) => {
             <div className="item-count">{cartItemsCount}</div>
           )}
         </Button>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
       </Container>
     </Navbar>
   );
