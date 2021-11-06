@@ -1,20 +1,42 @@
 import "../styles/components/ProductItem.scss";
+import { CurrencyConverter } from "../utils/CurrencyConverter";
+import moment from "moment";
 const ProductItem = (props) => {
   const { onAddToCart, productData } = props;
   return (
     <div className="product-item-card">
       <div className="product-info-container">
+        <div className="row title-row">
+          <div className="name-text">{productData?.name}</div>
+          <div className="price-text">
+            {CurrencyConverter(productData?.price)}
+          </div>
+        </div>
+
         <div className="content-row row">
-          <div className="col-4 img-info">
-            <div className="img-container">
-              <img src={productData?.image} className="product-img" />
+          <div className="img-container">
+            <img src={productData?.image} className="product-img" />
+          </div>
+          <div className="col-12 meta-info">
+            <div className="material-info-text">{productData?.material}</div>
+            <div className="created-date-text">
+              Created{" "}
+              {moment(productData?.createdAt).isValid
+                ? moment(productData?.createdAt).format("DD-MM-YYYY")
+                : ""}
             </div>
           </div>
-          <div className="col-8 meta-info">
-            <div className="name-text">{productData?.name}</div>
-            <div className="price-text">{productData?.price}</div>
-            <div className="material-info-text">{productData?.material}</div>
-            <div className="created-date-text">{productData?.createdAt}</div>
+          <div className="col-12 add-cart-container">
+            <div className="col-12 col-lg-4">
+              <div className="add-cart-btn">Add to Cart</div>
+            </div>
+            <div className="col-12 col-lg-8">
+              <div className="in-stock-qty">
+                {productData?.stock !== 0
+                  ? `${productData?.stock} in stock`
+                  : "Out of stock"}
+              </div>
+            </div>
           </div>
         </div>
       </div>

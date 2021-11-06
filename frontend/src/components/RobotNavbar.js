@@ -6,10 +6,9 @@ const RobotNavbar = (props) => {
   const { onCartClicked, cartItemsCount } = props;
   return (
     <Navbar className="main-navbar" expand="lg">
-      <Container fluid>
+      <Container>
         <Navbar.Brand>
           <span className="brand-text">Robot Market</span>
-          <p className="brand-desc">Get Yourself a new robot today</p>
         </Navbar.Brand>
         <Button className="cart-btn" onClick={onCartClicked}>
           <FontAwesomeIcon icon={faShoppingCart} />

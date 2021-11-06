@@ -1,21 +1,16 @@
 .main-navbar {
-  background-color: #4a4e62;
+  background-color: #254252;
   font-family: "Poppins";
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
   .brand-text {
-    color: #fffbfe;
+    color: #eab56f;
     font-size: 32px;
     font-weight: 600;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  .brand-desc {
-    color: #fffbfe;
-    font-size: 16px;
-    font-weight: 400;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+
   .cart-btn {
-    background-color: #ff6b6b;
+    background-color: #f9982f;
     border: none;
     position: relative;
     .item-count {

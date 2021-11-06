@@ -27,13 +27,13 @@ const App = () => {
         show={showCartModal}
         handleClose={() => setShowCartModal(false)}
       />
-      <div className="main-content container-fluid">
-        <div className="row">
+      <div className="main-content container">
+        <div className="row product-container">
           {products !== undefined &&
           products.length !== undefined &&
           products.length > 0 ? (
             products?.map((item) => (
-              <div className="col-12 col-md-6 col-xl-4 product-column">
+              <div className="col-12 col-lg-6 product-column">
                 <ProductItem productData={item} />
               </div>
             ))
