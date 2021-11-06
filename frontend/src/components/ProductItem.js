@@ -4,15 +4,17 @@ const ProductItem = (props) => {
   return (
     <div className="product-item-card">
       <div className="product-info-container">
-        <div className="meta-row row">
-          <div className="col-6 material-info">
-            <img src={productData?.image} className="product-img" />
+        <div className="content-row row">
+          <div className="col-4 img-info">
+            <div className="img-container">
+              <img src={productData?.image} className="product-img" />
+            </div>
           </div>
-          <div className="col-6 created-date-info">
-            <p className="name-text">{productData?.name}</p>
-            <p className="price-text">{productData?.price}</p>
-            <p className="material-info-text">{productData?.material}</p>
-            <p className="created-date-text">{productData?.createdAt}</p>
+          <div className="col-8 meta-info">
+            <div className="name-text">{productData?.name}</div>
+            <div className="price-text">{productData?.price}</div>
+            <div className="material-info-text">{productData?.material}</div>
+            <div className="created-date-text">{productData?.createdAt}</div>
           </div>
         </div>
       </div>

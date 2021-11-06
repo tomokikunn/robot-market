@@ -1,0 +1,29 @@
+.product-item-card {
+  //   border: 1px solid #1e1e1e;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  .content-row {
+    .img-info {
+      .img-container {
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        border-radius: 10px;
+        border: 1px solid #757575;
+        .product-img {
+          width: 120px;
+          height: 120px;
+          object-fit: cover;
+        }
+      }
+    }
+    .meta-info {
+      .name-text {
+        font-weight: 700;
+        font-size: 20px;
+      }
+    }
+  }
+}

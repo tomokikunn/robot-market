@@ -13,7 +13,9 @@ const RobotNavbar = (props) => {
         </Navbar.Brand>
         <Button className="cart-btn" onClick={onCartClicked}>
           <FontAwesomeIcon icon={faShoppingCart} />
-          {cartItemsCount > 0 && <div className="item-count">2</div>}
+          {cartItemsCount > 0 && (
+            <div className="item-count">{cartItemsCount}</div>
+          )}
         </Button>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
       </Container>

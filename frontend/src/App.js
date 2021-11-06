@@ -7,6 +7,7 @@ import ProductItem from "./components/ProductItem";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [products, setProducts] = useState([]);
+  const [itemsInCart, setItemsInCart] = useState([]);
 
   const getAllProducts = async () => {
     const response = await axios.get("http://localhost:8000/api/robots");
@@ -17,8 +18,11 @@ const App = () => {
     getAllProducts();
   }, []);
   return (
-    <div className="App">
-      <RobotNavbar onCartClicked={() => setShowCartModal(true)} />
+    <div className="App Homepage">
+      <RobotNavbar
+        onCartClicked={() => setShowCartModal(true)}
+        cartItemsCount={itemsInCart?.length}
+      />
       <CartModal
         show={showCartModal}
         handleClose={() => setShowCartModal(false)}
@@ -29,7 +33,7 @@ const App = () => {
           products.length !== undefined &&
           products.length > 0 ? (
             products?.map((item) => (
-              <div className="col-12 col-md-6 col-lg-4 product-column">
+              <div className="col-12 col-md-6 col-xl-4 product-column">
                 <ProductItem productData={item} />
               </div>
             ))
