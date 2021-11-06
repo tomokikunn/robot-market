@@ -7,7 +7,7 @@ import ProductItem from "./components/ProductItem";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [products, setProducts] = useState([]);
-  const [itemsInCart, setItemsInCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const getAllProducts = async () => {
     const response = await axios.get("http://localhost:8000/api/robots");
@@ -15,7 +15,7 @@ const App = () => {
   };
 
   const onAddToCart = (item) => {
-    let newCart = Object.assign([], itemsInCart);
+    let newCart = Object.assign([], cartItems);
     const foundInCart = newCart.find((v) => v?.name === item?.name);
     const currentItemIndex = newCart.indexOf(foundInCart);
     if (newCart?.length >= 5 && foundInCart === undefined) {
@@ -35,7 +35,11 @@ const App = () => {
         newCart[currentItemIndex].qty += 1;
       }
     }
-    setItemsInCart(newCart);
+    setCartItems(newCart);
+  };
+
+  const handleQuantityChange = (item, type) => {
+    console.log(item, type);
   };
   useEffect(() => {
     getAllProducts();
@@ -44,11 +48,13 @@ const App = () => {
     <div className="App Homepage">
       <RobotNavbar
         onCartClicked={() => setShowCartModal(true)}
-        cartItemsCount={Object.entries(itemsInCart)?.length}
+        cartItemsCount={Object.entries(cartItems)?.length}
       />
       <CartModal
         show={showCartModal}
         handleClose={() => setShowCartModal(false)}
+        cartItems={cartItems}
+        handleQuantityChange={handleQuantityChange}
       />
       <div className="main-content container">
         <div className="row product-container">

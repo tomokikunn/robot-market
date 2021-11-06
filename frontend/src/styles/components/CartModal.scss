@@ -1,25 +1,49 @@
 .cart-modal.modal.right {
   .modal-dialog {
     position: fixed;
-    width: 320px;
+    width: 360px;
     height: 100%;
     margin: 0;
     transform: translate3d(0%, 0, 0);
+    @media (max-width: 576px) {
+      width: 320px;
+    }
   }
 
+  .modal-header {
+    border-bottom: 2px solid #f9982f;
+    .cart-title {
+      color: #f9982f;
+      font-family: "Poppins";
+      font-size: 28px;
+    }
+    .btn-close {
+      opacity: 1;
+      background-color: #f9982f;
+    }
+  }
   .modal-content {
     height: 100%;
     overflow-y: auto;
+    background-color: #254252;
+    border: none;
   }
 
   .modal-body {
-    padding: 15px 15px 80px;
+    padding: 20px;
+  }
+  .modal-footer {
+    border-top: 2px solid #f9982f;
   }
 
   &.fade {
     .modal-dialog {
-      right: -320px;
+      right: -360px;
       transition: opacity 0.3s linear, right 0.3s ease-out;
+
+      @media (max-width: 576px) {
+        right: -320px;
+      }
     }
     &.show {
       .modal-dialog {
