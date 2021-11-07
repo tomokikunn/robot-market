@@ -4,10 +4,12 @@ import CartModal from "./components/CartModal";
 import RobotNavbar from "./components/RobotNavbar";
 import axios from "axios";
 import ProductItem from "./components/ProductItem";
+import { useRecoilState } from "recoil";
+import { currentCartState } from "./atoms/currentCartState";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useRecoilState(currentCartState);
 
   const getAllProducts = async () => {
     const response = await axios.get("http://localhost:8000/api/robots");
@@ -15,35 +17,45 @@ const App = () => {
   };
 
   const onAddToCart = (item) => {
-    let newCart = Object.assign([], cartItems);
-    const foundInCart = newCart.find((v) => v?.name === item?.name);
-    const currentItemIndex = newCart.indexOf(foundInCart);
-    if (newCart?.length >= 5 && foundInCart === undefined) {
-      //check if the entries is more than 5 and currently not in cart
-      window.alert("The robot is exceed 5 items");
-      return;
-    } else if (foundInCart?.qty + 1 > item?.stock) {
-      //check if the item in cart is exceeding stock
-      window.alert(
-        `The currently selected robot is exceeding the stock quantity, stock ${item?.stock} : selected in cart ${foundInCart?.qty}`
-      );
-      return;
-    } else {
-      if (currentItemIndex === -1) {
-        newCart = [...newCart, { ...item, qty: 1 }];
+    const existingItemInCart = cartItems.find((v) => v.name === item.name);
+    if (existingItemInCart == undefined) {
+      if (cartItems?.length >= 5) {
+        window.alert("The robot is exceed 5 items");
+        return;
       } else {
-        newCart[currentItemIndex].qty += 1;
+        let newCart = [...cartItems];
+        newCart.push({ ...item, qty: 1 });
+        setCartItems(newCart);
+        return;
       }
+    } else {
+      modifyCart(item, 1);
     }
-    setCartItems(newCart);
   };
 
-  const handleQuantityChange = (item, type) => {
-    console.log(item, type);
+  const modifyCart = (item, amount) => {
+    const newCart = cartItems?.map((cartItem) => {
+      if (cartItem?.name == item?.name) {
+        if (cartItem?.qty + amount > item?.stock) {
+          //check if the item in cart is exceeding stock
+          window.alert(
+            `The currently selected robot is exceeding the stock quantity, stock ${item?.stock} : selected in cart ${cartItem?.qty}`
+          );
+        } else if (cartItem?.qty + amount <= 0) {
+          return null;
+        } else {
+          cartItem = { ...cartItem, qty: cartItem["qty"] + amount };
+        }
+      }
+      return cartItem;
+    });
+    setCartItems(newCart.filter((v) => v !== null));
   };
+
   useEffect(() => {
     getAllProducts();
   }, []);
+
   return (
     <div className="App Homepage">
       <RobotNavbar
@@ -54,7 +66,7 @@ const App = () => {
         show={showCartModal}
         handleClose={() => setShowCartModal(false)}
         cartItems={cartItems}
-        handleQuantityChange={handleQuantityChange}
+        handleQuantityChange={modifyCart}
       />
       <div className="main-content container">
         <div className="row product-container">

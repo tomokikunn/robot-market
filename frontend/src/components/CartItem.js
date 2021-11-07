@@ -1,5 +1,8 @@
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/components/CartItem.scss";
 import { CurrencyConverter } from "../utils/CurrencyConverter";
+import ItemAmountSpinner from "./ItemAmountSpinner";
 const CartItem = (props) => {
   const { item, handleQuantityChange } = props;
   const itemPrice = CurrencyConverter(item?.price);
@@ -12,7 +15,18 @@ const CartItem = (props) => {
         <div className="product-price-times">{`(${itemPrice} x ${item?.qty})`}</div>
       </div>
       <div className="col-4 qty-container">
-        <div className="product-qty">{item?.qty}</div>
+        <ItemAmountSpinner
+          value={item?.qty}
+          onDecrease={() => handleQuantityChange(item, -1)}
+          onIncrease={() => handleQuantityChange(item, 1)}
+        />
+        {/* <div className="product-qty">{item?.qty}</div> */}
+        {/* <div className="up">
+          <FontAwesomeIcon icon={faArrowUp} />
+        </div>
+        <div className="down">
+          <FontAwesomeIcon icon={faArrowDown} />
+        </div> */}
       </div>
     </div>
   );
