@@ -20,13 +20,6 @@ const CartItem = (props) => {
           onDecrease={() => handleQuantityChange(item, -1)}
           onIncrease={() => handleQuantityChange(item, 1)}
         />
-        {/* <div className="product-qty">{item?.qty}</div> */}
-        {/* <div className="up">
-          <FontAwesomeIcon icon={faArrowUp} />
-        </div>
-        <div className="down">
-          <FontAwesomeIcon icon={faArrowDown} />
-        </div> */}
       </div>
     </div>
   );

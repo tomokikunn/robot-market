@@ -1,6 +1,7 @@
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "react-bootstrap";
+import { CartFunctions } from "../func/CartFunctions";
 import "../styles/components/CartModal.scss";
 import { CurrencyConverter } from "../utils/CurrencyConverter";
 import CartItem from "./CartItem";
@@ -9,7 +10,7 @@ const CartModal = (props) => {
     show,
     handleClose,
     cartItems,
-    handleQuantityChange,
+    setCartItems,
     totalAmount,
     totalPrice,
   } = props;
@@ -23,7 +24,12 @@ const CartModal = (props) => {
         cartItems.length !== undefined &&
         cartItems.length > 0 ? (
           cartItems.map((item) => (
-            <CartItem item={item} handleQuantityChange={handleQuantityChange} />
+            <CartItem
+              item={item}
+              handleQuantityChange={(item, amount) =>
+                CartFunctions.modifyCart(cartItems, setCartItems, item, amount)
+              }
+            />
           ))
         ) : (
           <div className="empty-cart-container">
