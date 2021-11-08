@@ -7,14 +7,19 @@ import ProductItem from "./components/ProductItem";
 import { useRecoilState } from "recoil";
 import { currentCartState } from "./atoms/currentCartState";
 import { CartFunctions } from "./func/CartFunctions";
+import Loading from "./components/Loading";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useRecoilState(currentCartState);
 
   const getAllProducts = async () => {
+    setIsLoading(true);
     const response = await axios.get("http://localhost:8000/api/robots");
     setProducts(response?.data?.data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -35,6 +40,7 @@ const App = () => {
         totalAmount={CartFunctions.getTotalAmount(cartItems)?.qty}
         totalPrice={CartFunctions.getTotalAmount(cartItems)?.price}
       />
+      <Loading show={isLoading} />
       <div className="main-content container">
         <div className="row product-container">
           {products !== undefined &&

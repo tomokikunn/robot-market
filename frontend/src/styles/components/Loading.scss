@@ -1,0 +1,26 @@
+.loading-spinner-modal {
+  font-family: "Poppins";
+  .modal-dialog {
+    width: 150px;
+    .modal-content {
+      border: none;
+      background-color: #254252;
+      .loading-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        .loading-spinner {
+          color: #f9982f;
+        }
+        .loading-text {
+          font-weight: 700;
+          font-size: 20px;
+          margin-top: 14px;
+          color: #f9982f;
+        }
+      }
+    }
+  }
+}
