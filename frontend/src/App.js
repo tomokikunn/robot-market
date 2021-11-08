@@ -39,7 +39,7 @@ const App = () => {
         if (cartItem?.qty + amount > item?.stock) {
           //check if the item in cart is exceeding stock
           window.alert(
-            `The currently selected robot is exceeding the stock quantity, stock ${item?.stock} : selected in cart ${cartItem?.qty}`
+            `The currently selected robot is exceeding the stock quantity of ${item?.stock} items`
           );
         } else if (cartItem?.qty + amount <= 0) {
           return null;
@@ -52,6 +52,24 @@ const App = () => {
     setCartItems(newCart.filter((v) => v !== null));
   };
 
+  const getTotalAmount = () => {
+    const initialValue = { qty: 0, price: 0 };
+    if (cartItems.length !== undefined && cartItems.length !== 0) {
+      const totalItems = cartItems.reduce((acc, nextValue) => {
+        console.log(nextValue);
+        const totalPrice = acc?.price + nextValue?.qty * nextValue?.price;
+        const totalQty = acc?.qty + nextValue?.qty;
+        return {
+          qty: totalQty,
+          price: Math.round(totalPrice * 100) / 100,
+        };
+      }, initialValue);
+      return totalItems;
+    } else {
+      return initialValue;
+    }
+  };
+
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -60,12 +78,14 @@ const App = () => {
     <div className="App Homepage">
       <RobotNavbar
         onCartClicked={() => setShowCartModal(true)}
-        cartItemsCount={Object.entries(cartItems)?.length}
+        cartItemsCount={getTotalAmount()?.qty}
       />
       <CartModal
         show={showCartModal}
         handleClose={() => setShowCartModal(false)}
         cartItems={cartItems}
+        totalAmount={getTotalAmount()?.qty}
+        totalPrice={getTotalAmount()?.price}
         handleQuantityChange={modifyCart}
       />
       <div className="main-content container">

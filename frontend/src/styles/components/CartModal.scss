@@ -31,9 +31,48 @@
 
   .modal-body {
     padding: 20px;
+    .empty-cart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-family: "Poppins";
+      color: #f9982f;
+      .cart-icon {
+        font-size: 36px;
+      }
+      .empty-cart-message {
+        font-size: 24px;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+    }
   }
   .modal-footer {
+    display: block;
     border-top: 2px solid #f9982f;
+    font-family: "Poppins";
+    .summary-column {
+      display: flex;
+      align-items: center;
+      &.amount-column {
+        .summary-amount-text {
+          font-size: 20px;
+          font-weight: 600;
+          color: #f9982f;
+        }
+      }
+      &.price-column {
+        justify-content: flex-end;
+        .summary-price-text {
+          font-size: 24px;
+          font-weight: 600;
+          color: #f9982f;
+          text-align: right;
+        }
+      }
+    }
   }
 
   &.fade {
