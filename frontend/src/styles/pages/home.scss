@@ -1,5 +1,17 @@
 .Homepage {
   .main-content {
     margin-top: 50px;
+    .filtering-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 40px;
+      .filtering-title {
+        font-size: 20px;
+        font-weight: 500;
+        color: #171c2d;
+        margin-right: 10px;
+      }
+    }
   }
 }
