@@ -12,9 +12,10 @@ const RobotDropdown = (props) => {
       {dropdowns !== undefined &&
         dropdowns.length !== undefined &&
         dropdowns.length > 0 &&
-        dropdowns.map((item) => {
+        dropdowns.map((item, index) => {
           return (
             <Dropdown.Item
+              key={index}
               eventKey={item}
               onClick={() => onSelectDropdown(item)}
             >

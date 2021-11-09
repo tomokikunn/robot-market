@@ -13,10 +13,8 @@ import { getMaterialLists } from "./utils/getMaterialLists";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-
   const [cartItems, setCartItems] = useRecoilState(currentCartState);
   const [materialLists, setMaterialLists] = useState([]);
   const [selectedMaterial, setSelectedMaterial] = useState(null);
@@ -76,8 +74,8 @@ const App = () => {
           {filteredProducts !== undefined &&
           filteredProducts.length !== undefined &&
           filteredProducts.length > 0 ? (
-            filteredProducts?.map((item) => (
-              <div className="col-12 col-lg-6 product-column">
+            filteredProducts?.map((item, index) => (
+              <div key={index} className="col-12 col-lg-6 product-column">
                 <ProductItem
                   productData={item}
                   onAddToCart={(item) =>

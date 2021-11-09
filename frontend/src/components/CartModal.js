@@ -23,13 +23,20 @@ const CartModal = (props) => {
         {cartItems !== undefined &&
         cartItems.length !== undefined &&
         cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <CartItem
-              item={item}
-              handleQuantityChange={(item, amount) =>
-                CartFunctions.modifyCart(cartItems, setCartItems, item, amount)
-              }
-            />
+          cartItems.map((item, index) => (
+            <div key={index}>
+              <CartItem
+                item={item}
+                handleQuantityChange={(item, amount) =>
+                  CartFunctions.modifyCart(
+                    cartItems,
+                    setCartItems,
+                    item,
+                    amount
+                  )
+                }
+              />
+            </div>
           ))
         ) : (
           <div className="empty-cart-container">
