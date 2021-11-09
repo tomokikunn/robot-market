@@ -8,16 +8,24 @@ import { useRecoilState } from "recoil";
 import { currentCartState } from "./atoms/currentCartState";
 import { CartFunctions } from "./func/CartFunctions";
 import Loading from "./components/Loading";
+import RobotDropdown from "./components/RobotDropdown";
+import { getMaterialLists } from "./utils/getMaterialLists";
 const App = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useRecoilState(currentCartState);
+  const [materialLists, setMaterialLists] = useState([]);
+  const [selectedMaterial, setSelectedMaterial] = useState(null);
 
   const getAllProducts = async () => {
     setIsLoading(true);
-    const response = await axios.get("http://localhost:8000/api/robots");
+    const response = await axios
+      .get("http://localhost:8000/api/robots")
+      .catch((e) => console.log(e));
+    const materials = getMaterialLists(response?.data?.data);
+    setMaterialLists(["All", ...materials]);
     setProducts(response?.data?.data);
     setIsLoading(false);
   };
@@ -42,6 +50,13 @@ const App = () => {
       />
       <Loading show={isLoading} />
       <div className="main-content container">
+        <div className="filtering-row">
+          <RobotDropdown
+            dropdowns={materialLists}
+            value={selectedMaterial}
+            onSelectDropdown={setSelectedMaterial}
+          />
+        </div>
         <div className="row product-container">
           {products !== undefined &&
           products.length !== undefined &&
